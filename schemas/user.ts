@@ -46,7 +46,7 @@ const user = {
             title: "Email Verification status",
             type: 'datetime',
             hidden: true,
-            validation: Rule => Rule.required(),
+            // validation: Rule => Rule.required(),
         }),
         defineField({
             name: 'about',
