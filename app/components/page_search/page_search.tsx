@@ -1,8 +1,20 @@
+"use client";
+
+import { useState } from "react";
 import Search from "../search/search";
 
 const PageSearch = () => {
+
+    const [roomTypeFilter, setRoomTypeFilter] = useState("");
+    const [searchQuery, setSearchQuery] = useState("");
+
+
 return (
-    <Search />
+    <Search roomTypeFilter={roomTypeFilter} 
+    searchQuery={searchQuery}
+    setRoomTypeFilter={setRoomTypeFilter}
+    setSearchQuery={setSearchQuery}
+    />
 );
 }
 

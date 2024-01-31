@@ -1,4 +1,6 @@
+import { useRouter } from "next/navigation";
 import { ChangeEvent, FC } from "react";
+import { route } from "sanity/router";
 
 type Props = {
     roomTypeFilter: string;
@@ -9,10 +11,20 @@ type Props = {
 
 const Search: FC<Props> = ({roomTypeFilter, searchQuery, setRoomTypeFilter, setSearchQuery}) => {
 
+    const router = useRouter();
+
     // const [ roomTypeFilter, searchQuery, setRoomTypeFilter, setSearchQuery] = props;
     const handleRoomTypeChange = (event: ChangeEvent<HTMLSelectElement>) => {
         setRoomTypeFilter(event.target.value);
-    }
+    };
+
+    const handleSearchQueryChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setSearchQuery(event.target.value);
+    };
+
+    const handleFilterClick =() => {
+        router.push(`/room?roomType=${roomTypeFilter}&searchQuery=${searchQuery}`);
+    };
 
     return (
         <section className="bg-tertiary-light px-4 py-6 rounded-lg">
@@ -23,8 +35,8 @@ const Search: FC<Props> = ({roomTypeFilter, searchQuery, setRoomTypeFilter, setS
                     </label>
                     <div className="relative">
                         <select 
-                        // value={roomTypeFilter}
-                        // onChange={handleRoomTypeChange}
+                        value={roomTypeFilter}
+                        onChange={handleRoomTypeChange}
                         className="w-full px-4 py-2 capitalize rounded leading-tight dark:bg-black focus:outline-none">
                             <option value="All">All</option>
                             <option value="Basic">Basic</option>
@@ -40,13 +52,13 @@ const Search: FC<Props> = ({roomTypeFilter, searchQuery, setRoomTypeFilter, setS
                     id="search"  
                     placeholder="Search..."
                     className="w-full px-4 py-3 rounded leading-tight dark:bg-black focus:outline-none placeholder:text-black dark:placeholder:text-white"
-                    // value={searchQuery}
-                    // onChange={handleSearchQueryChange}
+                    value={searchQuery}
+                    onChange={handleSearchQueryChange}
                     />
                 </div>
                 <button type="button"
                 className="btn-primary" 
-                // onClick={handleFilterClick}
+                onClick={handleFilterClick}
                 >
                     Search
                </button>
